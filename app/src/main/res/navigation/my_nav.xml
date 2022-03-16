@@ -3,13 +3,13 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/my_nav"
-    app:startDestination="@id/dash_ragment">
+    app:startDestination="@id/dash_fragment">
 
     <fragment
-        android:id="@+id/dash_ragment"
+        android:id="@+id/dash_fragment"
         android:name="com.example.milking.Dashragment"
-        android:label="fragment_dashragment"
-        tools:layout="@layout/fragment_dashragment" />
+        android:label="fragment_dashfragment"
+        tools:layout="@layout/fragment_dashfragment" />
     <fragment
         android:id="@+id/cowsFragment"
         android:name="com.example.milking.CowsFragment"
