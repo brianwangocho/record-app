@@ -9,13 +9,30 @@ import kotlinx.coroutines.launch
 
 class CowViewModel(private val repository: CowRepository) :ViewModel(){
 
-    val myResponse:MutableLiveData<Cow>  = MutableLiveData()
+    lateinit var cows: MutableLiveData<List<Cow>>
 
-    fun getCow(){
 
-        viewModelScope.launch{
-            val response = repository.getCow()
-            myResponse.value = response
-        }
+    init{
+        cows =  MutableLiveData()
+    }
+
+    fun getlistObservable():MutableLiveData<List<Cow>>{
+        return cows
+    }
+
+
+
+    suspend fun getCow(){
+
+        val call  = repository.getCows()
+        val data = call.execute()
+        cows.postValue(data.body())
+
+//        viewModelScope.launch{
+//            val response = repository.getCows()
+//            cre
+//
+//
+//        }
     }
 }
