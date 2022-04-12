@@ -10,11 +10,11 @@ interface Remote {
     @GET("get_cow/{id}")
     suspend fun getCow(@Path("id") cow_id:Int):Cow
 
-    @GET("/cow/all_cows'")
+    @GET("cow/all_cows")
     @Headers("Accept:application/json","Content-Type:application/json")
-    suspend fun   getAllCows():Call<List<Cow>>
+    fun   getAllCows():Call<List<Cow>>
 
-    @POST("/add_Cow")
+    @POST("add_Cow")
     @Headers("Accept:application/json","Content-Type:application/json")
     fun addCow(@Body params :Cow):Call<Cow>
 }

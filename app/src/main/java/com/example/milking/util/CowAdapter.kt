@@ -24,6 +24,7 @@ class CowAdapter(private val cowlist:ArrayList<Cow>):RecyclerView.Adapter<CowAda
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
         val currentItem =  cowlist[position]
         holder.cowName.text  =  currentItem.name
+        holder.tagNumber.text = currentItem.tag
     }
 
     override fun getItemCount(): Int {
@@ -35,6 +36,7 @@ class CowAdapter(private val cowlist:ArrayList<Cow>):RecyclerView.Adapter<CowAda
 
         val cowPic : ImageView = itemView.findViewById(R.id.imageView)
         val cowName : TextView = itemView.findViewById(R.id.cow_name)
+        val tagNumber:TextView = itemView.findViewById(R.id.tag_number)
     }
 
 }

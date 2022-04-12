@@ -15,9 +15,10 @@
         android:adjustViewBounds="true"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        android:src="@drawable/icons8_cow_48"
+        tools:srcCompat="@tools:sample/avatars"
+
         />
-<!--        tools:srcCompat="@tools:sample/avatars" -->
+
         />
 
     <TextView
@@ -36,10 +37,11 @@
         app:layout_constraintTop_toTopOf="parent"
 
      />
-    <View
+    <TextView
         android:layout_width="match_parent"
         android:layout_height="1dp"
         android:layout_margin="8dp"
+        android:id="@+id/tag_number"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/imageView"
 

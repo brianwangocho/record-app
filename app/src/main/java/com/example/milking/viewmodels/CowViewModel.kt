@@ -6,6 +6,10 @@ import androidx.lifecycle.viewModelScope
 import com.example.milking.models.Cow
 import com.example.milking.repository.CowRepository
 import kotlinx.coroutines.launch
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
+import java.util.concurrent.Callable
 
 class CowViewModel(private val repository: CowRepository) :ViewModel(){
 
@@ -21,12 +25,25 @@ class CowViewModel(private val repository: CowRepository) :ViewModel(){
     }
 
 
-
-    suspend fun getCow(){
+     fun getCow(){
 
         val call  = repository.getCows()
-        val data = call.execute()
-        cows.postValue(data.body())
+//        val data = call.execute()
+//        cows.postValue(data.body())
+         call.enqueue(object : Callback<List<Cow>> {
+             override fun onResponse(call: Call<List<Cow>>, response: Response<List<Cow>>) {
+                 if(response.isSuccessful){
+
+                     cows.postValue(response.body())
+                 }
+
+             }
+
+             override fun onFailure(call: Call<List<Cow>>, t: Throwable) {
+                 cows.postValue(null)
+             }
+
+         })
 
 //        viewModelScope.launch{
 //            val response = repository.getCows()

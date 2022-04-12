@@ -5,7 +5,7 @@ import com.example.milking.models.Cow
 import retrofit2.Call
 
 class CowRepository {
-    suspend fun getCows(): Call<List<Cow>> {
+     fun getCows(): Call<List<Cow>> {
       return  RetrofitInstance.api.getAllCows()
     }
 }
