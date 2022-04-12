@@ -45,11 +45,13 @@ class CowViewModel(private val repository: CowRepository) :ViewModel(){
 
          })
 
-//        viewModelScope.launch{
-//            val response = repository.getCows()
-//            cre
-//
-//
-//        }
+
+    }
+
+    fun addCow(cow: Cow){
+        val call  = repository.addCow(cow)
+
+
+
     }
 }

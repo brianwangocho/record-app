@@ -5,10 +5,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.LinearLayout
-import android.widget.RelativeLayout
-import android.widget.TextView
-import android.widget.Toast
+import android.widget.*
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
@@ -23,6 +20,8 @@ import com.example.milking.viewmodels.MyViewModelFactory
 import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.android.material.floatingactionbutton.FloatingActionButton
+import java.util.*
+import kotlin.collections.ArrayList
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -119,7 +118,19 @@ class CowsFragment : Fragment() {
         if (dialog != null) {
             dialog.setContentView(R.layout.cow_bottom_sheet_form)
 
-            val RLEdit = dialog.findViewById<TextView>(R.id.tvTitle)
+            val cowName = dialog.findViewById<EditText>(R.id.cow_name_text)
+            val cowTag = dialog.findViewById<EditText>(R.id.cow_tag_text)
+            val close_btn = dialog.findViewById<Button>(R.id.close)
+            val submit   = dialog.findViewById<Button>(R.id.submit)
+
+            submit?.setOnClickListener{
+
+               var data =     Cow(0,cowTag?.text.toString(), cowName?.text.toString(), Date())
+                //TODO: FINISH ADD COW FUNCTION TO THE SERVICE AND RESPONSE
+                viewModel.addCow(data)
+
+
+            }
 
             
             dialog.show()
