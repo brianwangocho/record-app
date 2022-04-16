@@ -3,6 +3,10 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/wangocho/AndroidStudioProjects/Milking/app/src/main/res/drawable/cow_feeding_image_background.xml" value="0.21666666666666667" />
+        <entry key="..\:/Users/wangocho/AndroidStudioProjects/Milking/app/src/main/res/drawable/ic_launcher_background.xml" value="0.21666666666666667" />
+        <entry key="..\:/Users/wangocho/AndroidStudioProjects/Milking/app/src/main/res/drawable/rect.xml" value="0.1140625" />
+        <entry key="..\:/Users/wangocho/AndroidStudioProjects/Milking/app/src/main/res/layout/activity_cow_details.xml" value="0.20416666666666666" />
         <entry key="..\:/Users/wangocho/AndroidStudioProjects/Milking/app/src/main/res/layout/activity_main.xml" value="0.18" />
         <entry key="..\:/Users/wangocho/AndroidStudioProjects/Milking/app/src/main/res/layout/cow_bottom_sheet_form.xml" value="0.22" />
         <entry key="..\:/Users/wangocho/AndroidStudioProjects/Milking/app/src/main/res/layout/cow_list.xml" value="0.12" />
@@ -11,6 +15,8 @@
         <entry key="..\:/Users/wangocho/AndroidStudioProjects/Milking/app/src/main/res/layout/fragment_dashragment.xml" value="0.1" />
         <entry key="..\:/Users/wangocho/AndroidStudioProjects/Milking/app/src/main/res/layout/fragment_milking.xml" value="0.2" />
         <entry key="..\:/Users/wangocho/AndroidStudioProjects/Milking/app/src/main/res/menu/my_menu.xml" value="0.1" />
+        <entry key="..\:/Users/wangocho/AndroidStudioProjects/Milking/app/src/main/res/menu/search_cows_recyclerview.xml" value="0.20416666666666666" />
+        <entry key="..\:/Users/wangocho/AndroidStudioProjects/Milking/app/src/main/res/mipmap-anydpi-v26/cow_feeding_image.xml" value="0.1140625" />
       </map>
     </option>
   </component>

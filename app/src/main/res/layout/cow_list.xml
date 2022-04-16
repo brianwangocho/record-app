@@ -38,7 +38,7 @@
         android:textSize="16sp"
         android:layout_marginStart="5dp"
         android:layout_toEndOf="@id/cow_name_label"
-        android:textStyle="bold"
+        android:fontFamily="monospace"
         android:textColor="@color/black"
 
 
@@ -67,6 +67,7 @@
         android:layout_below="@id/cow_name"
         android:layout_marginStart="5dp"
         android:padding="5dp"
+        android:fontFamily="monospace"
         android:layout_toEndOf="@id/cow_tag_label" />
 
 </RelativeLayout>

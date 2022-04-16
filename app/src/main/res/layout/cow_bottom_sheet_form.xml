@@ -7,6 +7,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     app:behavior_hideable="false"
+    android:background="@drawable/rect"
     app:behavior_peekHeight="132dp"
 
     >

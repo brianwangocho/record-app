@@ -1,11 +1,15 @@
 package com.example.milking.util
 
+import android.app.PendingIntent.getActivity
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
+import com.example.milking.CowDetails
 import com.example.milking.R
 
 
@@ -37,6 +41,17 @@ class CowAdapter(private val cowlist:ArrayList<Cow>):RecyclerView.Adapter<CowAda
         val cowPic : ImageView = itemView.findViewById(R.id.imageView)
         val cowName : TextView = itemView.findViewById(R.id.cow_name)
         val tagNumber:TextView = itemView.findViewById(R.id.tag_number)
+
+
+        init{
+            itemView.setOnClickListener{
+                Toast.makeText(itemView.context, cowName.text, Toast.LENGTH_SHORT).show()
+                val intent = Intent (itemView.context, CowDetails::class.java)
+                itemView.context?.startActivity(intent)
+            }
+
+
+        }
     }
 
 }

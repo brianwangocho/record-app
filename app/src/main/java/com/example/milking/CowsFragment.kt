@@ -1,10 +1,8 @@
 package com.example.milking
 
 import android.os.Bundle
+import android.view.*
 import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
 import android.widget.*
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.lifecycle.Observer
@@ -175,7 +173,8 @@ class CowsFragment : Fragment() {
 
     fun addCow(name:String,tag:String){
         var data =     Cow(0,name,tag, Date())
-        //TODO: FINISH ADD COW FUNCTION TO THE SERVICE AND RESPONSE
+        //TODO: FINISH ADD COW FUNCTION TO THE SERVICE AND RESPONSE - DONE
+        //TODO: MAKE CHECKS SO USERS MAY  NOT  POST NULL IN INPUTS
         val repository = CowRepository()
         viewModel.addCow(data)
         viewModel.getAddCowResponse().observe(this,{
@@ -194,6 +193,28 @@ class CowsFragment : Fragment() {
 
 
 
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+
+        inflater.inflate(R.menu.search_cows_recyclerview,menu)
+
+        val item = menu?.findItem(R.id.search_action)
+        val searchView = item?.actionView as SearchView
+
+        searchView.setOnQueryTextListener(object :SearchView.OnQueryTextListener{
+            override fun onQueryTextSubmit(p0: String?): Boolean {
+                TODO("Not yet implemented")
+            }
+
+            override fun onQueryTextChange(p0: String?): Boolean {
+                TODO("Not yet implemented")
+
+                return false;
+            }
+
+        })
+        super.onCreateOptionsMenu(menu, inflater)
     }
 
 

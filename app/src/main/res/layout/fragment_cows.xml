@@ -27,10 +27,10 @@
 
             android:layout_marginBottom="50dp"
             android:backgroundTint="@color/purple_500"
-            app:backgroundTint="#fff"
             android:focusable="true"
-
             android:src="@android:drawable/ic_input_add"
+
+            app:backgroundTint="#fff"
             app:elevation="6dp"
             app:fabSize="normal" />
     </RelativeLayout>
