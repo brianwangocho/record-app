@@ -4,6 +4,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.milking.models.Cow
+import com.example.milking.models.CowResponse
 import com.example.milking.repository.CowRepository
 import kotlinx.coroutines.launch
 import retrofit2.Call
@@ -14,15 +15,26 @@ import java.util.concurrent.Callable
 class CowViewModel(private val repository: CowRepository) :ViewModel(){
 
     lateinit var cows: MutableLiveData<List<Cow>>
+    lateinit var cow_response:MutableLiveData<CowResponse>
+
 
 
     init{
         cows =  MutableLiveData()
+        cow_response = MutableLiveData()
+
+
+
     }
 
     fun getlistObservable():MutableLiveData<List<Cow>>{
         return cows
     }
+
+    fun getAddCowResponse():MutableLiveData<CowResponse>{
+        return  cow_response
+    }
+
 
 
      fun getCow(){
@@ -40,7 +52,7 @@ class CowViewModel(private val repository: CowRepository) :ViewModel(){
              }
 
              override fun onFailure(call: Call<List<Cow>>, t: Throwable) {
-                 cows.postValue(null)
+
              }
 
          })
@@ -50,6 +62,26 @@ class CowViewModel(private val repository: CowRepository) :ViewModel(){
 
     fun addCow(cow: Cow){
         val call  = repository.addCow(cow)
+
+        call.enqueue(object: Callback<CowResponse>{
+            override fun onResponse(call: Call<CowResponse>, response: Response<CowResponse>) {
+
+                if(response.isSuccessful){
+                    cow_response.postValue(response.body())
+
+                }
+
+            }
+
+            override fun onFailure(call: Call<CowResponse>, t: Throwable) {
+
+
+
+
+            }
+
+        })
+
 
 
 

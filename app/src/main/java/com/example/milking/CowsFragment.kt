@@ -42,6 +42,7 @@ class CowsFragment : Fragment() {
     private lateinit var bottomSheetBehavior: BottomSheetBehavior<ConstraintLayout>
 
 
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -115,6 +116,7 @@ class CowsFragment : Fragment() {
 
     private fun showDialog() {
         val dialog = context?.let { BottomSheetDialog(it) }
+
         if (dialog != null) {
             dialog.setContentView(R.layout.cow_bottom_sheet_form)
 
@@ -125,10 +127,9 @@ class CowsFragment : Fragment() {
 
             submit?.setOnClickListener{
 
-               var data =     Cow(0,cowTag?.text.toString(), cowName?.text.toString(), Date())
-                //TODO: FINISH ADD COW FUNCTION TO THE SERVICE AND RESPONSE
-                viewModel.addCow(data)
 
+            addCow(cowName?.text.toString(),cowTag?.text.toString())
+                dialog.dismiss()
 
             }
 
@@ -166,6 +167,29 @@ class CowsFragment : Fragment() {
 
 
             }
+        })
+
+
+
+    }
+
+    fun addCow(name:String,tag:String){
+        var data =     Cow(0,name,tag, Date())
+        //TODO: FINISH ADD COW FUNCTION TO THE SERVICE AND RESPONSE
+        val repository = CowRepository()
+        viewModel.addCow(data)
+        viewModel.getAddCowResponse().observe(this,{
+
+
+            if(it.status  == "00"){
+             Toast.makeText(context, it.message, Toast.LENGTH_SHORT).show()
+
+
+            }else{
+                Toast.makeText(context, it.message, Toast.LENGTH_SHORT).show()
+
+            }
+
         })
 
 
