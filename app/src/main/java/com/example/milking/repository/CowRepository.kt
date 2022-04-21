@@ -3,6 +3,7 @@ package com.example.milking.repository
 import com.example.milking.api.RetrofitInstance
 import com.example.milking.models.Cow
 import com.example.milking.models.CowResponse
+import com.example.milking.models.MilkingData
 
 import retrofit2.Call
 import retrofit2.Response
@@ -17,4 +18,7 @@ class CowRepository {
    fun addCow(cow: Cow): Call<CowResponse> {
        return RetrofitInstance.api.addCow(cow)
    }
+    fun addMilkSessionData(md:MilkingData):Call<CowResponse>{
+        return RetrofitInstance.api.addMilkData(md)
+    }
 }

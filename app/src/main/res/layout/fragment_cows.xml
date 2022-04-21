@@ -4,6 +4,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
+    android:id="@+id/content"
     android:layout_height="match_parent"
     android:layout_margin="8dp"
     tools:context=".CowsFragment">
@@ -32,6 +33,7 @@
 
             app:backgroundTint="#fff"
             app:elevation="6dp"
+            app:tint="@android:color/white"
             app:fabSize="normal" />
     </RelativeLayout>
     <include layout="@layout/cow_bottom_sheet_form"

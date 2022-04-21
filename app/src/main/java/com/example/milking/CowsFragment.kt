@@ -1,5 +1,6 @@
 package com.example.milking
 
+import android.graphics.Color
 import android.os.Bundle
 import android.view.*
 import androidx.fragment.app.Fragment
@@ -18,6 +19,7 @@ import com.example.milking.viewmodels.MyViewModelFactory
 import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.android.material.floatingactionbutton.FloatingActionButton
+import com.google.android.material.snackbar.Snackbar
 import java.util.*
 import kotlin.collections.ArrayList
 
@@ -175,17 +177,32 @@ class CowsFragment : Fragment() {
         var data =     Cow(0,name,tag, Date())
         //TODO: FINISH ADD COW FUNCTION TO THE SERVICE AND RESPONSE - DONE
         //TODO: MAKE CHECKS SO USERS MAY  NOT  POST NULL IN INPUTS
-        val repository = CowRepository()
+
         viewModel.addCow(data)
         viewModel.getAddCowResponse().observe(this,{
 
 
             if(it.status  == "00"){
-             Toast.makeText(context, it.message, Toast.LENGTH_SHORT).show()
+                val snackBar = Snackbar.make(
+                    activity!!.findViewById(android.R.id.content),
+                    it.message, Snackbar.LENGTH_LONG
+                )
+                snackBar.setTextColor(Color.WHITE)
+                snackBar.setBackgroundTint(Color.GREEN)
+                snackBar.show()
+
 
 
             }else{
-                Toast.makeText(context, it.message, Toast.LENGTH_SHORT).show()
+
+                val snackBar = Snackbar.make(
+                    activity!!.findViewById(android.R.id.content),
+                    it.message, Snackbar.LENGTH_LONG
+                )
+                snackBar.setTextColor(Color.WHITE)
+                snackBar.setBackgroundTint(Color.RED)
+                snackBar.show()
+
 
             }
 

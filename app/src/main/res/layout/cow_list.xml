@@ -69,5 +69,15 @@
         android:padding="5dp"
         android:fontFamily="monospace"
         android:layout_toEndOf="@id/cow_tag_label" />
+    <TextView
+        android:id="@+id/cow_id"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tag_number"
+        android:layout_marginStart="5dp"
+        android:padding="5dp"
+        android:visibility="invisible"
+        android:fontFamily="monospace"
+        android:layout_toEndOf="@id/cow_tag_label" />
 
 </RelativeLayout>

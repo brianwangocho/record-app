@@ -2,6 +2,7 @@ package com.example.milking.api
 
 import com.example.milking.models.Cow
 import com.example.milking.models.CowResponse
+import com.example.milking.models.MilkingData
 
 import retrofit2.Call
 import retrofit2.Response
@@ -22,4 +23,8 @@ interface Remote {
     @POST("cow/add_cow")
     @Headers("Accept:application/json","Content-Type:application/json")
     fun addCow(@Body params :Cow): Call<CowResponse>
+
+    @POST("milking_data/add_milking_data")
+    @Headers("Accept:application/json","Content-Type:application/json")
+    fun addMilkData(@Body params :MilkingData): Call<CowResponse>
 }

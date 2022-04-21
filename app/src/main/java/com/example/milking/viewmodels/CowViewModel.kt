@@ -5,6 +5,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.milking.models.Cow
 import com.example.milking.models.CowResponse
+import com.example.milking.models.MilkingData
 import com.example.milking.repository.CowRepository
 import kotlinx.coroutines.launch
 import retrofit2.Call
@@ -62,6 +63,33 @@ class CowViewModel(private val repository: CowRepository) :ViewModel(){
 
     fun addCow(cow: Cow){
         val call  = repository.addCow(cow)
+
+        call.enqueue(object: Callback<CowResponse>{
+            override fun onResponse(call: Call<CowResponse>, response: Response<CowResponse>) {
+
+                if(response.isSuccessful){
+                    cow_response.postValue(response.body())
+
+                }
+
+            }
+
+            override fun onFailure(call: Call<CowResponse>, t: Throwable) {
+
+
+
+
+            }
+
+        })
+
+
+
+
+    }
+
+    fun addMilkingData(milkingSession: MilkingData){
+        val call  = repository.addMilkSessionData(milkingSession)
 
         call.enqueue(object: Callback<CowResponse>{
             override fun onResponse(call: Call<CowResponse>, response: Response<CowResponse>) {
