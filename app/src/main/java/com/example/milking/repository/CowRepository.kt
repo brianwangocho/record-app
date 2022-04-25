@@ -14,6 +14,9 @@ class CowRepository {
      fun getCows(): Call<List<Cow>> {
       return  RetrofitInstance.api.getAllCows()
     }
+    fun getMilkingData(): Call<List<MilkingData>> {
+        return  RetrofitInstance.api.getMilkingData()
+    }
 
    fun addCow(cow: Cow): Call<CowResponse> {
        return RetrofitInstance.api.addCow(cow)

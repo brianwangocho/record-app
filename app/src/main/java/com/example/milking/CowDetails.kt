@@ -4,18 +4,15 @@ import android.graphics.Color
 import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.TypedValue
 import android.view.View
 import android.widget.Button
 import android.widget.EditText
 import androidx.annotation.RequiresApi
-import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.lifecycle.ViewModelProvider
 import com.example.milking.models.MilkingData
 import com.example.milking.repository.CowRepository
 import com.example.milking.viewmodels.CowViewModel
 import com.example.milking.viewmodels.MyViewModelFactory
-import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.android.material.snackbar.Snackbar
@@ -61,9 +58,7 @@ class CowDetails : AppCompatActivity() {
         submit?.setOnClickListener{
             val id = cowId.toInt()
             val liters = amount?.text.toString().toInt()
-            val firstApiFormat = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")
-            val date = LocalDate.parse(Date().toString(), firstApiFormat)
-           var data = MilkingData(0,id,liters.toFloat(),date)
+            var data = MilkingData(0,id,liters.toFloat())
             addMilkingSession(data)
 
 

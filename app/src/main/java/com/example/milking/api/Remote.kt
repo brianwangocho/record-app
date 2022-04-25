@@ -20,6 +20,10 @@ interface Remote {
     @Headers("Accept:application/json","Content-Type:application/json")
     fun   getAllCows():Call<List<Cow>>
 
+    @GET("milking_data/get_milking_data")
+    @Headers("Accept:application/json","Content-Type:application/json")
+    fun   getMilkingData():Call<List<MilkingData>>
+
     @POST("cow/add_cow")
     @Headers("Accept:application/json","Content-Type:application/json")
     fun addCow(@Body params :Cow): Call<CowResponse>

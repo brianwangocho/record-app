@@ -16,12 +16,14 @@ import java.util.concurrent.Callable
 class CowViewModel(private val repository: CowRepository) :ViewModel(){
 
     lateinit var cows: MutableLiveData<List<Cow>>
+    lateinit var milkingData: MutableLiveData<List<MilkingData>>
     lateinit var cow_response:MutableLiveData<CowResponse>
 
 
 
     init{
         cows =  MutableLiveData()
+        milkingData = MutableLiveData()
         cow_response = MutableLiveData()
 
 
@@ -30,6 +32,9 @@ class CowViewModel(private val repository: CowRepository) :ViewModel(){
 
     fun getlistObservable():MutableLiveData<List<Cow>>{
         return cows
+    }
+    fun getMilkingListObservable():MutableLiveData<List<MilkingData>>{
+        return milkingData
     }
 
     fun getAddCowResponse():MutableLiveData<CowResponse>{
@@ -57,6 +62,32 @@ class CowViewModel(private val repository: CowRepository) :ViewModel(){
              }
 
          })
+
+
+    }
+
+
+    fun getMilkingData(){
+
+        val call  = repository.getMilkingData()
+//        val data = call.execute()
+//        cows.postValue(data.body())
+        call.enqueue(object : Callback<List<MilkingData>> {
+            override fun onResponse(call: Call<List<MilkingData>>, response: Response<List<MilkingData>>) {
+                if(response.isSuccessful){
+
+                    milkingData.postValue(response.body())
+                }
+
+            }
+
+
+            override fun onFailure(call: Call<List<MilkingData>>, t: Throwable) {
+                print(t.message)
+
+            }
+
+        })
 
 
     }
