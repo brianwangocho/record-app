@@ -63,48 +63,8 @@ class CowsFragment : Fragment() {
         add_button.setOnClickListener{
             showDialog()
         }
+        setHasOptionsMenu(true)
 
-
-//        bottomSheetBehavior = BottomSheetBehavior.from(view.findViewById(R.id.bottomSheet))
-//
-//        bottomSheetBehavior.addBottomSheetCallback(object : BottomSheetBehavior.BottomSheetCallback(){
-//
-//            override fun onSlide(bottomSheet: View, slideOffset: Float) {
-//                // handle onSlide
-//            }
-//            override fun onStateChanged(bottomSheet: View, newState: Int) {
-//                when (newState) {
-//                    BottomSheetBehavior.STATE_COLLAPSED -> Toast.makeText(
-//                        context,
-//                        "STATE_COLLAPSED",
-//                        Toast.LENGTH_SHORT
-//                    ).show()
-//                    BottomSheetBehavior.STATE_EXPANDED -> Toast.makeText(
-//                        context,
-//                        "STATE_EXPANDED",
-//                        Toast.LENGTH_SHORT
-//                    ).show()
-//                    BottomSheetBehavior.STATE_DRAGGING -> Toast.makeText(
-//                        context,
-//                        "STATE_DRAGGING",
-//                        Toast.LENGTH_SHORT
-//                    ).show()
-//                    BottomSheetBehavior.STATE_SETTLING -> Toast.makeText(
-//                        context,
-//                        "STATE_SETTLING",
-//                        Toast.LENGTH_SHORT
-//                    ).show()
-//                    BottomSheetBehavior.STATE_HIDDEN -> Toast.makeText(
-//                        context,
-//                        "STATE_HIDDEN",
-//                        Toast.LENGTH_SHORT
-//                    ).show()
-//                    else -> Toast.makeText(context, "OTHER_STATE", Toast.LENGTH_SHORT)
-//                        .show()
-//
-//                }
-//            }
-//        })
 
 
         initViewModel()
@@ -158,7 +118,9 @@ class CowsFragment : Fragment() {
 
                     val decoration =  DividerItemDecoration(context,DividerItemDecoration.VERTICAL)
                     addItemDecoration(decoration)
-                    adapter =  CowAdapter(it as ArrayList<Cow>)
+                    mycowAdapter = CowAdapter(it as ArrayList<Cow>)
+                    adapter =  mycowAdapter
+
 
                 }
 
@@ -176,7 +138,7 @@ class CowsFragment : Fragment() {
     fun addCow(name:String,tag:String){
         var data =     Cow(0,name,tag, Date())
         //TODO: FINISH ADD COW FUNCTION TO THE SERVICE AND RESPONSE - DONE
-        //TODO: MAKE CHECKS SO USERS MAY  NOT  POST NULL IN INPUTS
+        //TODO( MAKE CHECKS SO USERS MAY  NOT  POST NULL IN INPUTS)
 
         viewModel.addCow(data)
         viewModel.getAddCowResponse().observe(this,{
@@ -221,11 +183,12 @@ class CowsFragment : Fragment() {
 
         searchView.setOnQueryTextListener(object :SearchView.OnQueryTextListener{
             override fun onQueryTextSubmit(p0: String?): Boolean {
-                TODO("Not yet implemented")
+                mycowAdapter.filter.filter(p0)
+                return false;
+
             }
 
             override fun onQueryTextChange(p0: String?): Boolean {
-                TODO("Not yet implemented")
 
                 return false;
             }

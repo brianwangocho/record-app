@@ -8,6 +8,7 @@
     android:layout_height="match_parent"
     android:layout_margin="8dp"
     tools:context=".CowsFragment">
+
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
@@ -15,7 +16,19 @@
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recyclerView"
             android:layout_width="match_parent"
+
             android:layout_height="match_parent" />
+
+<!--        <androidx.appcompat.widget.SearchView-->
+<!--            android:id="@+id/country_search"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_above="@id/recyclerView"-->
+<!--            android:background="@color/purple_500"-->
+<!--            android:textCursorDrawable="@null"-->
+<!--            app:iconifiedByDefault="false"-->
+
+<!--            app:queryBackground="@null" />-->
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/floatingActionButton"
@@ -33,8 +46,9 @@
 
             app:backgroundTint="#fff"
             app:elevation="6dp"
+            app:fabSize="normal"
             app:tint="@android:color/white"
-            app:fabSize="normal" />
+            tools:ignore="SpeakableTextPresentCheck" />
     </RelativeLayout>
     <include layout="@layout/cow_bottom_sheet_form"
         android:visibility="invisible"

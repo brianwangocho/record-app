@@ -5,9 +5,7 @@ import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
-import android.widget.TextView
-import android.widget.Toast
+import android.widget.*
 import androidx.recyclerview.widget.RecyclerView
 import com.example.milking.CowDetails
 import com.example.milking.R
@@ -15,7 +13,8 @@ import com.example.milking.R
 
 import com.example.milking.models.Cow
 
-class CowAdapter(private val cowlist:ArrayList<Cow>):RecyclerView.Adapter<CowAdapter.MyViewHolder>() {
+class CowAdapter(private var cowlist:ArrayList<Cow>):RecyclerView.Adapter<CowAdapter.MyViewHolder>(),
+    Filterable {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
        val itemView = LayoutInflater.from(parent.context).inflate(
@@ -24,6 +23,7 @@ class CowAdapter(private val cowlist:ArrayList<Cow>):RecyclerView.Adapter<CowAda
 
         return MyViewHolder(itemView)
     }
+
 
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
         val currentItem =  cowlist[position]
@@ -55,6 +55,37 @@ class CowAdapter(private val cowlist:ArrayList<Cow>):RecyclerView.Adapter<CowAda
                 itemView.context?.startActivity(intent)
             }
 
+
+        }
+    }
+
+    override fun getFilter(): Filter {
+        return object :Filter(){
+            override fun performFiltering(constraint: CharSequence?): FilterResults {
+                val charSearch = constraint.toString()
+                var FilterList = ArrayList<Cow>()
+                if (charSearch.isEmpty()) {
+                    FilterList = cowlist
+                }
+                else{
+                    val results = ArrayList<Cow>()
+                    for(data  in cowlist){
+                        if(data.name  == constraint){
+                                results.add(data)
+                        }
+                    }
+                    FilterList  = results
+                }
+                val filterResults = FilterResults()
+                filterResults.values =  FilterList
+                return filterResults
+
+            }
+
+            override fun publishResults(p0: CharSequence?, results: FilterResults?) {
+                cowlist = results?.values as ArrayList<Cow>
+                notifyDataSetChanged()
+            }
 
         }
     }
