@@ -8,16 +8,16 @@
     <fragment
         android:id="@+id/dash_fragment"
         android:name="com.example.milking.Dashragment"
-        android:label="fragment_dashfragment"
+        android:label="Home"
         tools:layout="@layout/fragment_dashfragment" />
     <fragment
         android:id="@+id/cowsFragment"
         android:name="com.example.milking.CowsFragment"
-        android:label="fragment_cows"
+        android:label="Cows"
         tools:layout="@layout/fragment_cows" />
     <fragment
         android:id="@+id/milkingFragment"
         android:name="com.example.milking.MilkingFragment"
-        android:label="fragment_milking"
+        android:label="Milking Data"
         tools:layout="@layout/fragment_milking" />
 </navigation>

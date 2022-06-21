@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:id="@+id/milking_card"
+
+    android:layout_margin="8dp"
+    android:layout_height="wrap_content">
+
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:layout_marginStart="8dp"
+        android:scaleType="centerCrop"
+        tools:srcCompat="@tools:sample/avatars" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/cow_name_label"
+        android:textSize="16dp"
+        android:text="Amount:"
+        android:layout_marginStart="5dp"
+        android:layout_toEndOf="@id/imageView"
+        android:textStyle="bold"
+        android:textColor="@color/black"
+
+
+        />
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/cow_name"
+        android:textSize="16sp"
+        android:layout_marginStart="5dp"
+        android:layout_toEndOf="@id/cow_name_label"
+        android:fontFamily="monospace"
+        android:textColor="@color/black"
+
+
+        />
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/cow_tag_label"
+        android:textSize="16dp"
+        android:text="Time:"
+        android:layout_marginStart="5dp"
+        android:layout_below="@id/cow_name_label"
+        android:layout_toEndOf="@id/imageView"
+        android:textStyle="bold"
+        android:textColor="@color/black"
+
+
+        />
+
+    <TextView
+        android:id="@+id/tag_number"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/cow_name"
+        android:layout_marginStart="5dp"
+        android:padding="5dp"
+        android:fontFamily="monospace"
+        android:layout_toEndOf="@id/cow_tag_label" />
+    <TextView
+        android:id="@+id/cow_id"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tag_number"
+        android:layout_marginStart="5dp"
+        android:padding="5dp"
+        android:visibility="invisible"
+        android:fontFamily="monospace"
+        android:layout_toEndOf="@id/cow_tag_label" />
+
+</RelativeLayout>
