@@ -15,6 +15,7 @@ import com.example.milking.CowDetails
 import com.example.milking.R
 import com.example.milking.models.Cow
 import com.example.milking.models.MilkingData
+import com.squareup.picasso.Picasso
 import java.text.SimpleDateFormat
 import java.time.LocalDate
 import java.time.format.DateTimeFormatter
@@ -37,6 +38,7 @@ class MilkingAdapter(private val milkingdata:ArrayList<MilkingData>): RecyclerVi
 
         val currentItem =  milkingdata[position]
         holder.amount.text  =  currentItem.amount.toString()
+       Picasso.get().load(R.drawable.icons8_cow_48).into(holder.cowPic)
         //holder.time.text = currentItem.createdOn.toString()
         if(currentItem.createdOn != null){
 //
@@ -64,7 +66,7 @@ class MilkingAdapter(private val milkingdata:ArrayList<MilkingData>): RecyclerVi
 
     class MyViewHolder(itemView: View):RecyclerView.ViewHolder(itemView){
 
-//        val cowPic : ImageView = itemView.findViewById(R.id.imageView)
+          val cowPic : ImageView = itemView.findViewById(R.id.imageView)
         val amount : TextView = itemView.findViewById(R.id.cow_name)
         val time: TextView = itemView.findViewById(R.id.tag_number)
         val id: TextView = itemView.findViewById(R.id.cow_id)

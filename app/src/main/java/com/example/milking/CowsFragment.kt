@@ -37,6 +37,7 @@ class CowsFragment : Fragment() {
 
     lateinit var mycowAdapter:CowAdapter
     lateinit var recyclerView:RecyclerView
+    lateinit var progressBar: ProgressBar
     private lateinit var viewModel: CowViewModel
     private lateinit var add_button:FloatingActionButton
     private lateinit var bottomSheetBehavior: BottomSheetBehavior<ConstraintLayout>
@@ -59,11 +60,24 @@ class CowsFragment : Fragment() {
         val view = inflater.inflate(R.layout.fragment_cows, container, false)
         recyclerView = view.findViewById(R.id.recyclerView)
         add_button =  view.findViewById(R.id.floatingActionButton)
+        progressBar = view.findViewById(R.id.progress_circular)
 
         add_button.setOnClickListener{
             showDialog()
         }
         setHasOptionsMenu(true)
+        val repository = CowRepository()
+        val mainViewModelProviderFactory = MyViewModelFactory(repository)
+        viewModel = ViewModelProvider(this,mainViewModelProviderFactory).get(CowViewModel::class.java)
+        viewModel.getCow()
+
+        if(viewModel.isloading.value == true) {
+            progressBar.visibility = View.VISIBLE
+
+        }else{
+            progressBar.visibility = View.GONE
+
+        }
 
 
 
@@ -102,12 +116,10 @@ class CowsFragment : Fragment() {
 
 
     fun initViewModel(){
-        val repository = CowRepository()
 
 
-         val mainViewModelProviderFactory = MyViewModelFactory(repository)
-          viewModel = ViewModelProvider(this,mainViewModelProviderFactory).get(CowViewModel::class.java)
-         viewModel.getCow()
+
+
 
         viewModel.getlistObservable().observe(this, Observer<List<Cow>> { it
             if(it === null){

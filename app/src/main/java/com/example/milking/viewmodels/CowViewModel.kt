@@ -2,22 +2,21 @@ package com.example.milking.viewmodels
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import androidx.lifecycle.viewModelScope
 import com.example.milking.models.Cow
 import com.example.milking.models.CowResponse
 import com.example.milking.models.MilkingData
 import com.example.milking.repository.CowRepository
-import kotlinx.coroutines.launch
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
-import java.util.concurrent.Callable
 
 class CowViewModel(private val repository: CowRepository) :ViewModel(){
 
     lateinit var cows: MutableLiveData<List<Cow>>
     lateinit var milkingData: MutableLiveData<List<MilkingData>>
     lateinit var cow_response:MutableLiveData<CowResponse>
+    lateinit var isloading: MutableLiveData<Boolean>
+    var errorMessage = MutableLiveData<String>()
 
 
 
@@ -25,6 +24,7 @@ class CowViewModel(private val repository: CowRepository) :ViewModel(){
         cows =  MutableLiveData()
         milkingData = MutableLiveData()
         cow_response = MutableLiveData()
+        isloading = MutableLiveData()
 
 
 
@@ -48,16 +48,19 @@ class CowViewModel(private val repository: CowRepository) :ViewModel(){
         val call  = repository.getCows()
 //        val data = call.execute()
 //        cows.postValue(data.body())
+         isloading.postValue(true)
          call.enqueue(object : Callback<List<Cow>> {
              override fun onResponse(call: Call<List<Cow>>, response: Response<List<Cow>>) {
                  if(response.isSuccessful){
-
+                    isloading.postValue(false)
                      cows.postValue(response.body())
                  }
 
              }
 
              override fun onFailure(call: Call<List<Cow>>, t: Throwable) {
+                 isloading.postValue(false)
+                 errorMessage.postValue("An error occured while data try again later")
 
              }
 
@@ -77,6 +80,9 @@ class CowViewModel(private val repository: CowRepository) :ViewModel(){
                 if(response.isSuccessful){
 
                     milkingData.postValue(response.body())
+                }
+                else{
+
                 }
 
             }
